@@ -82,10 +82,25 @@
             color: #ffffff;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            position: relative;
         }
-        .grid-bg {
-            background-image: radial-gradient(circle at 2px 2px, rgba(133, 173, 255, 0.05) 1px, transparent 0);
-            background-size: 40px 40px;
+        /* Dotted Grid Background */
+        .grid-bg-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+            background-size: 32px 32px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        /* Interactive Shine Effect */
+        #shine-effect {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(133, 173, 255, 0.06), transparent 40%);
+            pointer-events: none;
+            z-index: 2;
+            transition: background 0.15s ease-out;
         }
         .glass-card {
             background: linear-gradient(135deg, rgba(32, 31, 31, 0.7) 0%, rgba(26, 25, 25, 0.3) 100%);
@@ -105,9 +120,17 @@
             color: #85adff !important;
             border-bottom: 2px solid #85adff;
         }
+        /* Ensure sections sit above the global overlays */
+        section, nav, aside, footer {
+            position: relative;
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="selection:bg-primary selection:text-on-primary">
+<!-- Background Layers -->
+<div class="grid-bg-overlay"></div>
+<div id="shine-effect" style="--mouse-x: 50%; --mouse-y: 50%;"></div>
 <!-- Contact Modal -->
 <div class="fixed inset-0 z-[100] hidden" id="contact-modal">
 <div class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0" id="modal-overlay" onclick="toggleModal()"></div>
@@ -157,55 +180,62 @@
 </div>
 </div>
 <script>
-    function toggleModal() {
-        const modal = document.getElementById('contact-modal');
-        const overlay = document.getElementById('modal-overlay');
-        const content = document.getElementById('modal-content');
-        
-        if (modal.classList.contains('hidden')) {
-            modal.classList.remove('hidden');
-            modal.offsetHeight; // Force reflow
-            overlay.classList.remove('opacity-0');
-            content.classList.remove('scale-95', 'translate-y-8', 'opacity-0');
-        } else {
-            overlay.classList.add('opacity-0');
-            content.classList.add('scale-95', 'translate-y-8', 'opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 500);
+        function toggleModal() {
+            const modal = document.getElementById('contact-modal');
+            const overlay = document.getElementById('modal-overlay');
+            const content = document.getElementById('modal-content');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.offsetHeight; // Force reflow
+                overlay.classList.remove('opacity-0');
+                content.classList.remove('scale-95', 'translate-y-8', 'opacity-0');
+            } else {
+                overlay.classList.add('opacity-0');
+                content.classList.add('scale-95', 'translate-y-8', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 500);
+            }
         }
-    }
 
-    // Scroll Spy Implementation
-    window.addEventListener('DOMContentLoaded', () => {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        // Scroll Spy Implementation
+        window.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
-        const observerOptions = {
-            root: null,
-            rootMargin: '-20% 0px -70% 0px',
-            threshold: 0
-        };
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px',
+                threshold: 0
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navLinks.forEach(link => {
-                        link.classList.remove('nav-link-active', 'text-blue-400', 'border-b-2', 'border-blue-400', 'pb-1');
-                        link.classList.add('text-neutral-400');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('nav-link-active');
-                            link.classList.remove('text-neutral-400');
-                        }
-                    });
-                }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('nav-link-active', 'text-blue-400', 'border-b-2', 'border-blue-400', 'pb-1');
+                            link.classList.add('text-neutral-400');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('nav-link-active');
+                                link.classList.remove('text-neutral-400');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+
+            // Shine Effect Logic
+            const shine = document.getElementById('shine-effect');
+            window.addEventListener('mousemove', (e) => {
+                shine.style.setProperty('--mouse-x', `${e.clientX}px`);
+                shine.style.setProperty('--mouse-y', `${e.clientY}px`);
             });
-        }, observerOptions);
-
-        sections.forEach(section => observer.observe(section));
-    });
-</script>
+        });
+    </script>
 <!-- Top Navigation Shell -->
 <nav class="fixed top-0 w-full z-50 bg-neutral-950/60 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-blue-900/10 h-20">
 <div class="flex justify-between items-center max-w-7xl mx-auto px-6 h-full">
@@ -218,8 +248,8 @@
 <a class="text-neutral-400 hover:text-white transition-all duration-300 font-mono text-xs uppercase" href="#contact">Contact</a>
 </div>
 <button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-medium hover:bg-primary-container transition-all active:scale-95 duration-200" onclick="toggleModal()">
-            Get in Touch
-        </button>
+                Get in Touch
+            </button>
 </div>
 </nav>
 <!-- Side/Bottom Social Navigation -->
@@ -235,7 +265,7 @@
 </a>
 </aside>
 <!-- Hero Section -->
-<section class="relative min-h-screen flex items-center pt-20 grid-bg overflow-hidden" id="home">
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden" id="home">
 <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
 <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
 <div class="md:col-span-7 space-y-6">
@@ -243,11 +273,11 @@
 <span class="font-mono text-[10px] text-primary tracking-widest uppercase">Available for new opportunities</span>
 </div>
 <h1 class="text-6xl md:text-8xl font-bold font-headline tracking-tighter leading-[0.9] text-white">
-                Engineering <span class="text-primary-dim">Scalable</span> Digital Architectures.
-            </h1>
+                    Engineering <span class="text-primary-dim">Scalable</span> Digital Architectures.
+                </h1>
 <p class="text-lg md:text-xl text-on-surface-variant font-body max-w-xl leading-relaxed">
-                Software engineer specialized in building high-performance applications. I bridge the gap between complex backend logic and seamless frontend experiences.
-            </p>
+                    Software engineer specialized in building high-performance applications. I bridge the gap between complex backend logic and seamless frontend experiences.
+                </p>
 <div class="flex items-center gap-8 pt-4">
 <a class="bg-primary text-on-primary px-8 py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_25px_rgba(133,173,255,0.4)] transition-all flex items-center gap-3 cursor-pointer" onclick="toggleModal()">Connect Now <span class="material-symbols-outlined text-sm">bolt</span></a>
 </div>
@@ -274,7 +304,7 @@
 </div>
 </section>
 <!-- Experience Timeline -->
-<section class="py-32 bg-surface-container-low" id="experience">
+<section class="py-32 bg-surface-container-low/50" id="experience">
 <div class="max-w-7xl mx-auto px-6">
 <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-4">
 <div class="space-y-2">
@@ -282,8 +312,8 @@
 <h2 class="text-4xl md:text-5xl font-bold font-headline tracking-tight">Professional Journey</h2>
 </div>
 <div class="text-on-surface-variant font-mono text-sm text-right hidden md:block">
-                // ARCHIVE_01.LOG
-            </div>
+                    // ARCHIVE_01.LOG
+                </div>
 </div>
 <div class="space-y-12">
 <!-- WesionaryTEAM -->
@@ -356,7 +386,7 @@
 <p class="text-sm text-on-surface-variant leading-relaxed">The Asia Foundation's platform. Developed learning pathway features, interactive educational games for children, and a real-time analytics dashboard with role-based access control.</p>
 </div>
 <a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="https://www.letsreadasia.org/" target="_blank">
-                    View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
 <!-- Project 2: Chautary -->
@@ -371,22 +401,22 @@
 <p class="text-sm text-on-surface-variant leading-relaxed">A growing global Nepali marketplace currently based in the USA, providing a platform for seamless trade and community connection.</p>
 </div>
 <a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="https://chautary.com" target="_blank">
-                    View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
 </div>
 </div>
 </section>
 <!-- Skills Matrix -->
-<section class="py-32 bg-surface-container-low relative" id="skills">
+<section class="py-32 bg-surface-container-low/50 relative" id="skills">
 <div class="max-w-7xl mx-auto px-6">
 <div class="grid md:grid-cols-2 gap-16 items-start">
 <div>
 <span class="font-mono text-xs text-secondary uppercase tracking-[0.3em]">Toolbox</span>
 <h2 class="text-4xl md:text-5xl font-bold font-headline tracking-tight mt-2 mb-8">Technical Proficiency</h2>
 <p class="text-on-surface-variant leading-relaxed mb-12">
-                    My stack is curated for scalability, maintainability, and developer experience. I leverage modern tools to build robust applications.
-                </p>
+                        My stack is curated for scalability, maintainability, and developer experience. I leverage modern tools to build robust applications.
+                    </p>
 <div class="flex flex-wrap gap-3">
 <span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">NextJS</span>
 <span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">React</span>
@@ -544,8 +574,8 @@
 <textarea class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700" placeholder="Tell me about your project..." rows="4"></textarea>
 </div>
 <button class="w-full bg-primary text-on-primary py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(133,173,255,0.2)] active:scale-[0.98] transition-all">
-                        Send Transmission
-                    </button>
+                            Send Transmission
+                        </button>
 </form>
 </div>
 </div>
@@ -562,8 +592,8 @@
 <a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="mailto:mpudasaini17@gmail.com">Email</a>
 </div>
 <div class="text-neutral-500 font-mono text-[10px] uppercase">
-            © 2024 Manoj Pudasaini. Engineered with precision.
-        </div>
+                © 2024 Manoj Pudasaini. Engineered with precision.
+            </div>
 </div>
 </footer>
 </body></html>
