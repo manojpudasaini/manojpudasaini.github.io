@@ -94,9 +94,84 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        #modal-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #modal-content {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
     </style>
 </head>
 <body class="selection:bg-primary selection:text-on-primary">
+<!-- Contact Modal -->
+<div class="fixed inset-0 z-[100] hidden" id="contact-modal">
+<div class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0" id="modal-overlay" onclick="toggleModal()"></div>
+<div class="flex items-center justify-center min-h-screen p-4">
+<div class="relative glass-card border border-white/10 rounded-2xl w-full max-w-md overflow-hidden scale-90 translate-y-4" id="modal-content">
+<div class="p-8">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-2xl font-bold font-headline tracking-tight">Get in Touch</h3>
+<button class="text-neutral-500 hover:text-white transition-colors" onclick="toggleModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-6">
+<a class="flex items-center gap-4 p-4 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 transition-all group" href="mailto:mpudasaini17@gmail.com">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<div class="text-[10px] font-mono text-neutral-500 uppercase">Email</div>
+<div class="font-medium text-sm">mpudasaini17@gmail.com</div>
+</div>
+</a>
+<div class="grid grid-cols-3 gap-4">
+<a class="flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 transition-all group" href="https://www.linkedin.com/in/manoj-pudasaini-641324147/" target="_blank">
+<span class="material-symbols-outlined text-primary">share</span>
+<span class="font-mono text-[10px] uppercase">LinkedIn</span>
+</a>
+<a class="flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 transition-all group" href="https://github.com/manojpudasaini" target="_blank">
+<span class="material-symbols-outlined text-primary">code</span>
+<span class="font-mono text-[10px] uppercase">GitHub</span>
+</a>
+<a class="flex flex-col items-center gap-2 p-4 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 transition-all group" href="https://medium.com/@mpudasaini17" target="_blank">
+<span class="material-symbols-outlined text-primary">article</span>
+<span class="font-mono text-[10px] uppercase">Medium</span>
+</a>
+</div>
+<div class="p-4 rounded-xl border border-dashed border-outline-variant/30 flex items-center justify-between">
+<span class="font-mono text-[10px] text-neutral-500 uppercase">WhatsApp / Call</span>
+<span class="font-medium text-sm">+977 9849788407</span>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 p-4 text-center">
+<p class="text-[10px] font-mono text-primary uppercase tracking-widest">Available for hire &amp; collaboration</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+    function toggleModal() {
+        const modal = document.getElementById('contact-modal');
+        const overlay = document.getElementById('modal-overlay');
+        const content = document.getElementById('modal-content');
+        
+        if (modal.classList.contains('hidden')) {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.remove('opacity-0');
+                content.classList.remove('scale-90', 'translate-y-4');
+            }, 10);
+        } else {
+            overlay.classList.add('opacity-0');
+            content.classList.add('scale-90', 'translate-y-4');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    }
+</script>
 <!-- Top Navigation Shell -->
 <nav class="fixed top-0 w-full z-50 bg-neutral-950/60 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-blue-900/10 h-20">
 <div class="flex justify-between items-center max-w-7xl mx-auto px-6 h-full">
@@ -108,20 +183,20 @@
 <a class="text-neutral-400 hover:text-white transition-colors font-mono text-xs uppercase" href="#skills">Skills</a>
 <a class="text-neutral-400 hover:text-white transition-colors font-mono text-xs uppercase" href="#contact">Contact</a>
 </div>
-<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-medium hover:bg-primary-container transition-all active:scale-95 duration-200">
-                Get in Touch
-            </button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-medium hover:bg-primary-container transition-all active:scale-95 duration-200" onclick="toggleModal()">
+            Get in Touch
+        </button>
 </div>
 </nav>
 <!-- Side Social Navigation -->
 <aside class="fixed left-0 top-1/2 -translate-y-1/2 rounded-r-xl w-14 bg-neutral-900/40 backdrop-blur-md shadow-lg shadow-black/50 z-40 flex flex-col items-center py-8 gap-6">
-<a class="text-neutral-500 hover:text-blue-300 hover:translate-x-1 transition-all duration-500" href="https://www.linkedin.com/in/manoj-pudasaini-641324147/" title="LinkedIn">
+<a class="text-neutral-500 hover:text-blue-300 hover:translate-x-1 transition-all duration-500" href="https://www.linkedin.com/in/manoj-pudasaini-641324147/" target="_blank" title="LinkedIn">
 <span class="material-symbols-outlined">share</span>
 </a>
-<a class="text-neutral-500 hover:text-blue-300 hover:translate-x-1 transition-all duration-500" href="https://github.com/manojpudasaini" title="GitHub">
+<a class="text-neutral-500 hover:text-blue-300 hover:translate-x-1 transition-all duration-500" href="https://github.com/manojpudasaini" target="_blank" title="GitHub">
 <span class="material-symbols-outlined">code</span>
 </a>
-<a class="text-neutral-500 hover:text-blue-300 hover:translate-x-1 transition-all duration-500" href="https://medium.com/@mpudasaini17" title="Medium">
+<a class="text-neutral-500 hover:text-blue-300 hover:translate-x-1 transition-all duration-500" href="https://medium.com/@mpudasaini17" target="_blank" title="Medium">
 <span class="material-symbols-outlined">article</span>
 </a>
 </aside>
@@ -134,24 +209,24 @@
 <span class="font-mono text-[10px] text-primary tracking-widest uppercase">Available for new opportunities</span>
 </div>
 <h1 class="text-6xl md:text-8xl font-bold font-headline tracking-tighter leading-[0.9] text-white">
-                    Engineering <span class="text-primary-dim">Scalable</span> Digital Architectures.
-                </h1>
+                Engineering <span class="text-primary-dim">Scalable</span> Digital Architectures.
+            </h1>
 <p class="text-lg md:text-xl text-on-surface-variant font-body max-w-xl leading-relaxed">
-                    Software engineer specialized in building high-performance applications. I bridge the gap between complex backend logic and seamless frontend experiences.
-                </p>
-<div class="flex items-center gap-6 pt-4">
-<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-medium hover:shadow-[0_0_20px_rgba(133,173,255,0.3)] transition-all">
-                        View Portfolio
-                    </button>
-<a class="text-primary font-mono text-sm group flex items-center gap-2" href="#contact">
-                        READ_RESUME.PDF <span class="group-hover:translate-x-1 transition-transform">→</span>
+                Software engineer specialized in building high-performance applications. I bridge the gap between complex backend logic and seamless frontend experiences.
+            </p>
+<div class="flex items-center gap-8 pt-4">
+<a class="bg-primary text-on-primary px-8 py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_25px_rgba(133,173,255,0.4)] transition-all flex items-center gap-3" href="#projects">
+                    See Engineering Impact <span class="material-symbols-outlined text-sm">arrow_downward</span>
 </a>
+<a class="text-neutral-500 hover:text-primary font-mono text-xs uppercase tracking-wider transition-colors border-b border-transparent hover:border-primary pb-1" href="mailto:mpudasaini17@gmail.com">
+                    Download Full CV
+                </a>
 </div>
 </div>
 <div class="md:col-span-5 relative group">
 <div class="absolute -inset-1 bg-gradient-to-tr from-primary/30 to-secondary/30 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
 <div class="relative glass-card aspect-square rounded-xl overflow-hidden border border-outline-variant/10">
-<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional headshot of Manoj Pudasaini" src="https://lh3.googleusercontent.com/aida/ADBb0uikM5xEUH2ubrMK-3GHe_bVxOov3hPUPCbBeuwI-GlKiAUjBpgn-VDM23fVAkcE_kM3bBOr1oD1cQXFjc29oKggg3wwLYpWs4RfUsrlxNqjxECk9-6LMh-1U0N17sho1puRCeEX8GgppVisOAObqbny76QNx0orAWw7D6QyvjkKH_70cQ1485CXkddt_WeZ2WNzinBxLwvQDQvMkHEdjVaM3ZsycK2nkt0YloEDt0WvYCC8TnHp61S-QKWQxsImzPmplDd8atEKNg"/>
+<img alt="Professional headshot of Manoj Pudasaini" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uikM5xEUH2ubrMK-3GHe_bVxOov3hPUPCbBeuwI-GlKiAUjBpgn-VDM23fVAkcE_kM3bBOr1oD1cQXFjc29oKggg3wwLYpWs4RfUsrlxNqjxECk9-6LMh-1U0N17sho1puRCeEX8GgppVisOAObqbny76QNx0orAWw7D6QyvjkKH_70cQ1485CXkddt_WeZ2WNzinBxLwvQDQvMkHEdjVaM3ZsycK2nkt0YloEDt0WvYCC8TnHp61S-QKWQxsImzPmplDd8atEKNg"/>
 </div>
 <div class="absolute -bottom-6 -left-6 glass-card p-6 border border-outline-variant/20 rounded-xl hidden md:block">
 <div class="flex gap-4">
@@ -178,8 +253,8 @@
 <h2 class="text-4xl md:text-5xl font-bold font-headline tracking-tight">Professional Journey</h2>
 </div>
 <div class="text-on-surface-variant font-mono text-sm text-right hidden md:block">
-                    // ARCHIVE_01.LOG
-                </div>
+                // ARCHIVE_01.LOG
+            </div>
 </div>
 <div class="space-y-12">
 <!-- WesionaryTEAM -->
@@ -251,8 +326,8 @@
 <h3 class="text-2xl font-bold font-headline">Let's Read</h3>
 <p class="text-sm text-on-surface-variant leading-relaxed">The Asia Foundation's platform. Developed learning pathway features, interactive educational games for children, and a real-time analytics dashboard with role-based access control.</p>
 </div>
-<a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="https://www.letsreadasia.org/">
-                        View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
+<a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="https://www.letsreadasia.org/" target="_blank">
+                    View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
 <!-- Project 2 -->
@@ -266,8 +341,8 @@
 <h3 class="text-2xl font-bold font-headline">Hamro Chat</h3>
 <p class="text-sm text-on-surface-variant leading-relaxed">Integrated messaging features within the Hamro Patro ecosystem. Developed a custom TypeScript SDK for cross-project integration and implemented gRPC protocols for efficient communication.</p>
 </div>
-<a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="https://chat.hamropatro.com/">
-                        View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
+<a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="https://chat.hamropatro.com/" target="_blank">
+                    View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
 <!-- Project 3 -->
@@ -282,7 +357,7 @@
 <p class="text-sm text-on-surface-variant leading-relaxed">Focused on creating visualizations for NATS implementation in a Micronaut project. Utilized Thymeleaf and Java Micronaut views to build intuitive management interfaces.</p>
 </div>
 <a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="#">
-                        View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -296,8 +371,8 @@
 <span class="font-mono text-xs text-secondary uppercase tracking-[0.3em]">Toolbox</span>
 <h2 class="text-4xl md:text-5xl font-bold font-headline tracking-tight mt-2 mb-8">Technical Proficiency</h2>
 <p class="text-on-surface-variant leading-relaxed mb-12">
-                        My stack is curated for scalability, maintainability, and developer experience. I leverage modern tools to build robust applications.
-                    </p>
+                    My stack is curated for scalability, maintainability, and developer experience. I leverage modern tools to build robust applications.
+                </p>
 <div class="flex flex-wrap gap-3">
 <span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">NextJS</span>
 <span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">React</span>
@@ -455,8 +530,8 @@
 <textarea class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700" placeholder="Tell me about your project..." rows="4"></textarea>
 </div>
 <button class="w-full bg-primary text-on-primary py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(133,173,255,0.2)] active:scale-[0.98] transition-all">
-                            Send Transmission
-                        </button>
+                        Send Transmission
+                    </button>
 </form>
 </div>
 </div>
@@ -467,14 +542,14 @@
 <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
 <div class="text-lg font-bold text-white font-['Space_Grotesk'] tracking-tighter">Manoj Pudasaini</div>
 <div class="flex gap-8">
-<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="https://www.linkedin.com/in/manoj-pudasaini-641324147/">LinkedIn</a>
-<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="https://github.com/manojpudasaini">GitHub</a>
-<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="https://medium.com/@mpudasaini17">Medium</a>
+<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="https://www.linkedin.com/in/manoj-pudasaini-641324147/" target="_blank">LinkedIn</a>
+<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="https://github.com/manojpudasaini" target="_blank">GitHub</a>
+<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="https://medium.com/@mpudasaini17" target="_blank">Medium</a>
 <a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="mailto:mpudasaini17@gmail.com">Email</a>
 </div>
 <div class="text-neutral-500 font-mono text-[10px] uppercase">
-                © 2024 Manoj Pudasaini. Engineered with precision.
-            </div>
+            © 2024 Manoj Pudasaini. Engineered with precision.
+        </div>
 </div>
 </footer>
 </body></html>
