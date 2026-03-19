@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manoj Pudasaini | Software Engineer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#262626",
+                        "outline-variant": "#494847",
+                        "surface-container-highest": "#262626",
+                        "tertiary": "#fbabff",
+                        "primary-dim": "#699cff",
+                        "primary-container": "#6e9fff",
+                        "secondary-container": "#006c49",
+                        "tertiary-container": "#f199f7",
+                        "surface": "#0e0e0e",
+                        "on-background": "#ffffff",
+                        "primary-fixed-dim": "#5391ff",
+                        "secondary": "#69f6b8",
+                        "tertiary-dim": "#e28ce9",
+                        "on-surface": "#ffffff",
+                        "on-error-container": "#ffa8a3",
+                        "error-container": "#9f0519",
+                        "surface-container-lowest": "#000000",
+                        "surface-container-high": "#201f1f",
+                        "surface-container": "#1a1919",
+                        "secondary-fixed": "#69f6b8",
+                        "outline": "#777575",
+                        "surface-tint": "#85adff",
+                        "surface-dim": "#0e0e0e",
+                        "inverse-surface": "#fcf8f8",
+                        "on-tertiary-container": "#5e106a",
+                        "inverse-on-surface": "#565554",
+                        "on-primary-fixed": "#000000",
+                        "on-secondary-fixed-variant": "#006544",
+                        "error-dim": "#d7383b",
+                        "error": "#ff716c",
+                        "secondary-dim": "#58e7ab",
+                        "on-secondary": "#005a3c",
+                        "on-surface-variant": "#adaaaa",
+                        "primary": "#85adff",
+                        "inverse-primary": "#005bc4",
+                        "surface-container-low": "#131313",
+                        "on-tertiary": "#691d74",
+                        "on-secondary-container": "#e1ffec",
+                        "on-primary": "#002c66",
+                        "surface-bright": "#2c2c2c",
+                        "on-tertiary-fixed": "#3e0047",
+                        "on-primary-container": "#002150",
+                        "background": "#0e0e0e",
+                        "primary-fixed": "#6e9fff",
+                        "secondary-fixed-dim": "#58e7ab",
+                        "on-tertiary-fixed-variant": "#681c73",
+                        "on-primary-fixed-variant": "#002a62",
+                        "on-error": "#490006",
+                        "on-secondary-fixed": "#00452d",
+                        "tertiary-fixed": "#f199f7",
+                        "tertiary-fixed-dim": "#e28ce9"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"],
+                        "mono": ["JetBrains Mono"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0e0e0e;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .grid-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(133, 173, 255, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(32, 31, 31, 0.7) 0%, rgba(26, 25, 25, 0.3) 100%);
+            backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/60 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-blue-900/10 h-20">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-6 h-full">
+<div class="text-xl font-bold tracking-tighter text-white font-['Space_Grotesk']">Manoj Pudasaini</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1 font-mono text-xs uppercase" href="#home">Home</a>
+<a class="text-neutral-400 hover:text-white transition-colors font-mono text-xs uppercase" href="#experience">Experience</a>
+<a class="text-neutral-400 hover:text-white transition-colors font-mono text-xs uppercase" href="#projects">Projects</a>
+<a class="text-neutral-400 hover:text-white transition-colors font-mono text-xs uppercase" href="#skills">Skills</a>
+<a class="text-neutral-400 hover:text-white transition-colors font-mono text-xs uppercase" href="#contact">Contact</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-medium hover:bg-primary-container transition-all active:scale-95 duration-200">
+                Get in Touch
+            </button>
+</div>
+</nav>
+<!-- Side Social Navigation -->
+<aside class="fixed left-0 top-1/2 -translate-y-1/2 rounded-r-xl w-14 bg-neutral-900/40 backdrop-blur-md shadow-lg shadow-black/50 z-40 flex flex-col items-center py-8 gap-6">
+<a class="text-neutral-500 hover:text-blue-300 hover:translate-x-1 transition-all duration-500" href="https://www.linkedin.com/in/manoj-pudasaini-641324147/" title="LinkedIn">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="text-neutral-500 hover:text-blue-300 hover:translate-x-1 transition-all duration-500" href="https://github.com/manojpudasaini" title="GitHub">
+<span class="material-symbols-outlined">code</span>
+</a>
+<a class="text-neutral-500 hover:text-blue-300 hover:translate-x-1 transition-all duration-500" href="https://medium.com/@mpudasaini17" title="Medium">
+<span class="material-symbols-outlined">article</span>
+</a>
+</aside>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-20 grid-bg overflow-hidden" id="home">
+<div class="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
+<div class="md:col-span-7 space-y-6">
+<div class="inline-block px-3 py-1 bg-surface-container-high rounded-full border border-outline-variant/20">
+<span class="font-mono text-[10px] text-primary tracking-widest uppercase">Available for new opportunities</span>
+</div>
+<h1 class="text-6xl md:text-8xl font-bold font-headline tracking-tighter leading-[0.9] text-white">
+                    Engineering <span class="text-primary-dim">Scalable</span> Digital Architectures.
+                </h1>
+<p class="text-lg md:text-xl text-on-surface-variant font-body max-w-xl leading-relaxed">
+                    Software engineer specialized in building high-performance applications. I bridge the gap between complex backend logic and seamless frontend experiences.
+                </p>
+<div class="flex items-center gap-6 pt-4">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-medium hover:shadow-[0_0_20px_rgba(133,173,255,0.3)] transition-all">
+                        View Portfolio
+                    </button>
+<a class="text-primary font-mono text-sm group flex items-center gap-2" href="#contact">
+                        READ_RESUME.PDF <span class="group-hover:translate-x-1 transition-transform">→</span>
+</a>
+</div>
+</div>
+<div class="md:col-span-5 relative group">
+<div class="absolute -inset-1 bg-gradient-to-tr from-primary/30 to-secondary/30 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative glass-card aspect-square rounded-xl overflow-hidden border border-outline-variant/10">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional headshot of Manoj Pudasaini" src="https://lh3.googleusercontent.com/aida/ADBb0uikM5xEUH2ubrMK-3GHe_bVxOov3hPUPCbBeuwI-GlKiAUjBpgn-VDM23fVAkcE_kM3bBOr1oD1cQXFjc29oKggg3wwLYpWs4RfUsrlxNqjxECk9-6LMh-1U0N17sho1puRCeEX8GgppVisOAObqbny76QNx0orAWw7D6QyvjkKH_70cQ1485CXkddt_WeZ2WNzinBxLwvQDQvMkHEdjVaM3ZsycK2nkt0YloEDt0WvYCC8TnHp61S-QKWQxsImzPmplDd8atEKNg"/>
+</div>
+<div class="absolute -bottom-6 -left-6 glass-card p-6 border border-outline-variant/20 rounded-xl hidden md:block">
+<div class="flex gap-4">
+<div>
+<div class="text-3xl font-bold font-headline">3+</div>
+<div class="text-[10px] font-mono text-neutral-500 uppercase tracking-tighter">Years Exp</div>
+</div>
+<div class="w-[1px] bg-outline-variant/20"></div>
+<div>
+<div class="text-3xl font-bold font-headline">15+</div>
+<div class="text-[10px] font-mono text-neutral-500 uppercase tracking-tighter">Projects</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Timeline -->
+<section class="py-32 bg-surface-container-low" id="experience">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-4">
+<div class="space-y-2">
+<span class="font-mono text-xs text-secondary uppercase tracking-[0.3em]">Career Path</span>
+<h2 class="text-4xl md:text-5xl font-bold font-headline tracking-tight">Professional Journey</h2>
+</div>
+<div class="text-on-surface-variant font-mono text-sm text-right hidden md:block">
+                    // ARCHIVE_01.LOG
+                </div>
+</div>
+<div class="space-y-12">
+<!-- WesionaryTEAM -->
+<div class="group relative grid md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-3">
+<span class="font-mono text-sm text-neutral-500">Jan, 2024 — Present</span>
+</div>
+<div class="md:col-span-9 glass-card p-8 border border-outline-variant/10 rounded-xl group-hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-2xl font-bold font-headline">Software Engineer</h3>
+<p class="text-primary font-mono text-sm">WesionaryTEAM Co. Ltd.</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-3xl">terminal</span>
+</div>
+<div class="text-on-surface-variant leading-relaxed max-w-3xl space-y-4">
+<p>Developed and maintained web applications using modern frontend frameworks (React, Next.js). Collaborated with cross-functional teams of engineers and designers to deliver scalable solutions.</p>
+<ul class="list-disc list-inside space-y-1 text-sm opacity-80">
+<li>Applied AI-powered tools to enhance developer experience (DX).</li>
+<li>Implemented SEO best practices and optimized UI/UX.</li>
+<li>Contributed to backend development using Go (Golang).</li>
+<li>Leveraged AWS services for deployment and application scalability.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Smart Ideas -->
+<div class="group relative grid md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-3">
+<span class="font-mono text-sm text-neutral-500">Nov, 2022 — Dec, 2023</span>
+</div>
+<div class="md:col-span-9 glass-card p-8 border border-outline-variant/10 rounded-xl group-hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-2xl font-bold font-headline">Associate Software Engineer</h3>
+<p class="text-primary font-mono text-sm">Smart Ideas Pvt Ltd, Hamro Patro Inc.</p>
+</div>
+<span class="material-symbols-outlined text-neutral-500 text-3xl">developer_mode_tv</span>
+</div>
+<div class="text-on-surface-variant leading-relaxed max-w-3xl space-y-4">
+<p>Contributed to multiple projects as a Frontend Developer, building scalable and responsive web applications using React, Next.js, and Svelte.</p>
+<ul class="list-disc list-inside space-y-1 text-sm opacity-80">
+<li>Used UI libraries like Ant Design, Material UI, Chakra UI.</li>
+<li>Developed typescript library for multi-project integration.</li>
+<li>Familiar with gcloud, docker, VM.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Grid -->
+<section class="py-32" id="projects">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-20">
+<span class="font-mono text-xs text-primary uppercase tracking-[0.3em]">Selected Work</span>
+<h2 class="text-4xl md:text-5xl font-bold font-headline tracking-tight">Featured Projects</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Project 1 -->
+<div class="group relative flex flex-col bg-surface-container rounded-xl p-8 border border-outline-variant/10 hover:border-primary/40 transition-all duration-500 min-h-[320px]">
+<div class="flex-grow space-y-4">
+<div class="flex gap-2 flex-wrap">
+<span class="px-2 py-1 bg-surface-variant text-[10px] font-mono text-on-surface-variant rounded">React</span>
+<span class="px-2 py-1 bg-surface-variant text-[10px] font-mono text-on-surface-variant rounded">SSE</span>
+<span class="px-2 py-1 bg-surface-variant text-[10px] font-mono text-on-surface-variant rounded">Analytics</span>
+</div>
+<h3 class="text-2xl font-bold font-headline">Let's Read</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">The Asia Foundation's platform. Developed learning pathway features, interactive educational games for children, and a real-time analytics dashboard with role-based access control.</p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="https://www.letsreadasia.org/">
+                        View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Project 2 -->
+<div class="group relative flex flex-col bg-surface-container rounded-xl p-8 border border-outline-variant/10 hover:border-primary/40 transition-all duration-500 min-h-[320px]">
+<div class="flex-grow space-y-4">
+<div class="flex gap-2 flex-wrap">
+<span class="px-2 py-1 bg-surface-variant text-[10px] font-mono text-on-surface-variant rounded">Svelte</span>
+<span class="px-2 py-1 bg-surface-variant text-[10px] font-mono text-on-surface-variant rounded">gRPC</span>
+<span class="px-2 py-1 bg-surface-variant text-[10px] font-mono text-on-surface-variant rounded">TypeScript SDK</span>
+</div>
+<h3 class="text-2xl font-bold font-headline">Hamro Chat</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Integrated messaging features within the Hamro Patro ecosystem. Developed a custom TypeScript SDK for cross-project integration and implemented gRPC protocols for efficient communication.</p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="https://chat.hamropatro.com/">
+                        View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Project 3 -->
+<div class="group relative flex flex-col bg-surface-container rounded-xl p-8 border border-outline-variant/10 hover:border-primary/40 transition-all duration-500 min-h-[320px]">
+<div class="flex-grow space-y-4">
+<div class="flex gap-2 flex-wrap">
+<span class="px-2 py-1 bg-surface-variant text-[10px] font-mono text-on-surface-variant rounded">Java</span>
+<span class="px-2 py-1 bg-surface-variant text-[10px] font-mono text-on-surface-variant rounded">Micronaut</span>
+<span class="px-2 py-1 bg-surface-variant text-[10px] font-mono text-on-surface-variant rounded">NATS</span>
+</div>
+<h3 class="text-2xl font-bold font-headline">HamroDB</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Focused on creating visualizations for NATS implementation in a Micronaut project. Utilized Thymeleaf and Java Micronaut views to build intuitive management interfaces.</p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase pt-8 hover:gap-4 transition-all" href="#">
+                        View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Matrix -->
+<section class="py-32 bg-surface-container-low relative" id="skills">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-16 items-start">
+<div>
+<span class="font-mono text-xs text-secondary uppercase tracking-[0.3em]">Toolbox</span>
+<h2 class="text-4xl md:text-5xl font-bold font-headline tracking-tight mt-2 mb-8">Technical Proficiency</h2>
+<p class="text-on-surface-variant leading-relaxed mb-12">
+                        My stack is curated for scalability, maintainability, and developer experience. I leverage modern tools to build robust applications.
+                    </p>
+<div class="flex flex-wrap gap-3">
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">NextJS</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">React</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">TypeScript</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">Go</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">NodeJS</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">ExpressJS</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">Svelte</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">TailwindCSS</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">Docker</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">AWS</span>
+<span class="px-4 py-2 bg-surface-container border border-outline-variant/20 rounded-lg text-sm font-medium">GCP</span>
+</div>
+</div>
+<div class="space-y-10">
+<div>
+<h4 class="font-mono text-xs text-neutral-500 uppercase mb-6 tracking-widest">Frontend &amp; Languages</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-mono uppercase">HTML</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-mono uppercase">CSS</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-mono uppercase">JS</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-mono uppercase">React</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-mono uppercase">Svelte</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-mono uppercase">TypeScript</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-mono uppercase">Turborepo</span>
+</div>
+</div>
+<div>
+<h4 class="font-mono text-xs text-neutral-500 uppercase mb-6 tracking-widest">Backend &amp; Infrastructure</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-xs font-mono uppercase">NodeJS</span>
+<span class="px-3 py-1.5 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-xs font-mono uppercase">Go</span>
+<span class="px-3 py-1.5 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-xs font-mono uppercase">MySQL</span>
+<span class="px-3 py-1.5 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-xs font-mono uppercase">Firebase</span>
+<span class="px-3 py-1.5 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-xs font-mono uppercase">Linux</span>
+<span class="px-3 py-1.5 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-xs font-mono uppercase">AWS</span>
+<span class="px-3 py-1.5 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-xs font-mono uppercase">GCP</span>
+</div>
+</div>
+<div>
+<h4 class="font-mono text-xs text-neutral-500 uppercase mb-6 tracking-widest">AI &amp; Tools</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-tertiary/10 text-tertiary border border-tertiary/20 rounded-full text-xs font-mono uppercase">OpenAI</span>
+<span class="px-3 py-1.5 bg-tertiary/10 text-tertiary border border-tertiary/20 rounded-full text-xs font-mono uppercase">Claude</span>
+<span class="px-3 py-1.5 bg-tertiary/10 text-tertiary border border-tertiary/20 rounded-full text-xs font-mono uppercase">MCPs</span>
+<span class="px-3 py-1.5 bg-tertiary/10 text-tertiary border border-tertiary/20 rounded-full text-xs font-mono uppercase">Git/Github</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Education & Certs -->
+<section class="py-32">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-24">
+<div>
+<h2 class="text-3xl font-bold font-headline mb-12">Education</h2>
+<div class="space-y-12">
+<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full">
+<h4 class="text-xl font-bold">B.E. in IT</h4>
+<p class="text-on-surface-variant text-sm mt-1">Everest Engineering College, affiliated with Pokhara University</p>
+<p class="text-xs text-primary-dim font-mono mt-1">CGPA score of 3.62 with distinction division</p>
+<p class="font-mono text-[10px] text-neutral-500 mt-2">NOV, 2017 - OCT, 2022</p>
+</div>
+<div class="relative pl-8 before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:bg-outline-variant before:rounded-full">
+<h4 class="text-xl font-bold">National Education Board (Science)</h4>
+<p class="text-on-surface-variant text-sm mt-1">Golden Gate International College</p>
+<p class="text-xs text-primary-dim font-mono mt-1">79.2% with distinction division</p>
+<p class="font-mono text-[10px] text-neutral-500 mt-2">AUG, 2015 - JUL, 2017</p>
+</div>
+</div>
+</div>
+<div>
+<h2 class="text-3xl font-bold font-headline mb-12">Certifications</h2>
+<div class="grid gap-4">
+<div class="glass-card p-6 border border-outline-variant/10 rounded-xl flex items-center gap-6 group hover:border-secondary/40 transition-colors">
+<div class="w-12 h-12 rounded bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<div>
+<h4 class="font-bold">Basics of Go</h4>
+<p class="text-xs text-on-surface-variant">Frontend Masters / Exercism Academy (2024)</p>
+</div>
+</div>
+<div class="glass-card p-6 border border-outline-variant/10 rounded-xl flex items-center gap-6 group hover:border-secondary/40 transition-colors">
+<div class="w-12 h-12 rounded bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div>
+<h4 class="font-bold">Jira Fundamentals</h4>
+<p class="text-xs text-on-surface-variant">Atlassian University (2022)</p>
+</div>
+</div>
+<div class="glass-card p-6 border border-outline-variant/10 rounded-xl flex items-center gap-6 group hover:border-secondary/40 transition-colors">
+<div class="w-12 h-12 rounded bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<div>
+<h4 class="font-bold">C &amp; C Programming</h4>
+<p class="text-xs text-on-surface-variant">Broadway Infosys Nepal (2017)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-32 bg-surface-container-high border-t border-white/5" id="contact">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-20">
+<div class="space-y-8">
+<h2 class="text-5xl md:text-6xl font-bold font-headline tracking-tighter">Let's build something <span class="text-primary-dim italic underline decoration-1 underline-offset-8">exceptional</span>.</h2>
+<p class="text-on-surface-variant text-lg">Accepting freelance projects and full-time opportunities. Reach out and let's discuss your next breakthrough.</p>
+<div class="space-y-4 pt-8">
+<a class="flex items-center gap-4 group" href="mailto:mpudasaini17@gmail.com">
+<div class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-sm text-white">mail</span>
+</div>
+<span class="font-mono text-sm group-hover:text-primary transition-colors">mpudasaini17@gmail.com</span>
+</a>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-white">call</span>
+</div>
+<span class="font-mono text-sm">977 9849788407</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-white">location_on</span>
+</div>
+<span class="font-mono text-sm">Kageshwori Manahara-08, Kathmandu, Nepal</span>
+</div>
+</div>
+</div>
+<div class="glass-card p-10 border border-outline-variant/20 rounded-2xl relative">
+<form class="space-y-6">
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-mono text-[10px] text-neutral-500 uppercase">Your Name</label>
+<input class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-mono text-[10px] text-neutral-500 uppercase">Email Address</label>
+<input class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700" placeholder="john@company.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-mono text-[10px] text-neutral-500 uppercase">Subject</label>
+<input class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700" placeholder="Project Inquiry" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-mono text-[10px] text-neutral-500 uppercase">Message</label>
+<textarea class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700" placeholder="Tell me about your project..." rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(133,173,255,0.2)] active:scale-[0.98] transition-all">
+                            Send Transmission
+                        </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-neutral-950 border-t border-white/5 py-12">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-lg font-bold text-white font-['Space_Grotesk'] tracking-tighter">Manoj Pudasaini</div>
+<div class="flex gap-8">
+<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="https://www.linkedin.com/in/manoj-pudasaini-641324147/">LinkedIn</a>
+<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="https://github.com/manojpudasaini">GitHub</a>
+<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="https://medium.com/@mpudasaini17">Medium</a>
+<a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="mailto:mpudasaini17@gmail.com">Email</a>
+</div>
+<div class="text-neutral-500 font-mono text-[10px] uppercase">
+                © 2024 Manoj Pudasaini. Engineered with precision.
+            </div>
+</div>
+</footer>
+</body></html>
