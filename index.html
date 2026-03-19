@@ -84,42 +84,55 @@
             overflow-x: hidden;
             position: relative;
         }
-        /* Dotted Grid Background */
-        .grid-bg-overlay {
+
+        /* Dot Grid Background */
+        .dot-grid {
             position: fixed;
             inset: 0;
-            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
-            background-size: 32px 32px;
-            pointer-events: none;
             z-index: 1;
+            pointer-events: none;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.15) 1px, transparent 0);
+            background-size: 24px 24px;
         }
-        /* Interactive Shine Effect */
-        #shine-effect {
+
+        /* Shine Mask Effect */
+        #shine-mask {
             position: fixed;
             inset: 0;
-            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(133, 173, 255, 0.06), transparent 40%);
-            pointer-events: none;
             z-index: 2;
-            transition: background 0.15s ease-out;
+            pointer-events: none;
+            background: radial-gradient(
+                800px circle at var(--mouse-x) var(--mouse-y),
+                rgba(133, 173, 255, 0.3) 0%,
+                rgba(133, 173, 255, 0.1) 30%,
+                transparent 70%
+            );
+            transition: background 0.1s ease-out;
         }
+
         .glass-card {
-            background: linear-gradient(135deg, rgba(32, 31, 31, 0.7) 0%, rgba(26, 25, 25, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(32, 31, 31, 0.8) 0%, rgba(26, 25, 25, 0.4) 100%);
             backdrop-filter: blur(20px);
         }
+
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
         #modal-overlay {
             transition: opacity 0.4s ease-out;
         }
+
         #modal-content {
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+
         /* Scroll Spy Styling */
         .nav-link-active {
             color: #85adff !important;
             border-bottom: 2px solid #85adff;
         }
+
         /* Ensure sections sit above the global overlays */
         section, nav, aside, footer {
             position: relative;
@@ -129,8 +142,8 @@
 </head>
 <body class="selection:bg-primary selection:text-on-primary">
 <!-- Background Layers -->
-<div class="grid-bg-overlay"></div>
-<div id="shine-effect" style="--mouse-x: 50%; --mouse-y: 50%;"></div>
+<div class="dot-grid"></div>
+<div id="shine-mask" style="--mouse-x: 50%; --mouse-y: 50%;"></div>
 <!-- Contact Modal -->
 <div class="fixed inset-0 z-[100] hidden" id="contact-modal">
 <div class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0" id="modal-overlay" onclick="toggleModal()"></div>
@@ -199,7 +212,7 @@
             }
         }
 
-        // Scroll Spy Implementation
+        // Mouse follower and Scroll Spy Implementation
         window.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('nav a[href^="#"]');
@@ -215,7 +228,7 @@
                     if (entry.isIntersecting) {
                         const id = entry.target.getAttribute('id');
                         navLinks.forEach(link => {
-                            link.classList.remove('nav-link-active', 'text-blue-400', 'border-b-2', 'border-blue-400', 'pb-1');
+                            link.classList.remove('nav-link-active');
                             link.classList.add('text-neutral-400');
                             if (link.getAttribute('href') === `#${id}`) {
                                 link.classList.add('nav-link-active');
@@ -229,10 +242,12 @@
             sections.forEach(section => observer.observe(section));
 
             // Shine Effect Logic
-            const shine = document.getElementById('shine-effect');
+            const shine = document.getElementById('shine-mask');
             window.addEventListener('mousemove', (e) => {
-                shine.style.setProperty('--mouse-x', `${e.clientX}px`);
-                shine.style.setProperty('--mouse-y', `${e.clientY}px`);
+                requestAnimationFrame(() => {
+                    shine.style.setProperty('--mouse-x', `${e.clientX}px`);
+                    shine.style.setProperty('--mouse-y', `${e.clientY}px`);
+                });
             });
         });
     </script>
@@ -311,9 +326,6 @@
 <span class="font-mono text-xs text-secondary uppercase tracking-[0.3em]">Career Path</span>
 <h2 class="text-4xl md:text-5xl font-bold font-headline tracking-tight">Professional Journey</h2>
 </div>
-<div class="text-on-surface-variant font-mono text-sm text-right hidden md:block">
-                    // ARCHIVE_01.LOG
-                </div>
 </div>
 <div class="space-y-12">
 <!-- WesionaryTEAM -->
@@ -554,7 +566,7 @@
 </div>
 </div>
 <div class="glass-card p-10 border border-outline-variant/20 rounded-2xl relative">
-<form class="space-y-6">
+<form class="space-y-6" onsubmit="event.preventDefault();">
 <div class="grid grid-cols-2 gap-6">
 <div class="space-y-2">
 <label class="font-mono text-[10px] text-neutral-500 uppercase">Your Name</label>
@@ -574,7 +586,7 @@
 <textarea class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700" placeholder="Tell me about your project..." rows="4"></textarea>
 </div>
 <button class="w-full bg-primary text-on-primary py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(133,173,255,0.2)] active:scale-[0.98] transition-all">
-                            Send Transmission
+                            Send
                         </button>
 </form>
 </div>
@@ -592,7 +604,7 @@
 <a class="text-neutral-500 hover:text-white transition-colors font-mono text-xs" href="mailto:mpudasaini17@gmail.com">Email</a>
 </div>
 <div class="text-neutral-500 font-mono text-[10px] uppercase">
-                © 2024 Manoj Pudasaini. Engineered with precision.
+                © 2026 Manoj Pudasaini. Engineered with precision.
             </div>
 </div>
 </footer>
