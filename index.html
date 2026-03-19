@@ -4,7 +4,27 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Manoj Pudasaini | Software Engineer</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+    function toggleModal() {
+        const modal = document.getElementById('contact-modal');
+        const overlay = document.getElementById('modal-overlay');
+        const content = document.getElementById('modal-content');
+        
+        if (modal.classList.contains('hidden')) {
+            modal.classList.remove('hidden');
+            // Force reflow
+            modal.offsetHeight;
+            overlay.classList.remove('opacity-0');
+            content.classList.remove('scale-95', 'translate-y-8', 'opacity-0');
+        } else {
+            overlay.classList.add('opacity-0');
+            content.classList.add('scale-95', 'translate-y-8', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 500);
+        }
+    }
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -95,10 +115,10 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         #modal-overlay {
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.4s ease-out;
         }
         #modal-content {
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
     </style>
 </head>
@@ -107,7 +127,7 @@
 <div class="fixed inset-0 z-[100] hidden" id="contact-modal">
 <div class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0" id="modal-overlay" onclick="toggleModal()"></div>
 <div class="flex items-center justify-center min-h-screen p-4">
-<div class="relative glass-card border border-white/10 rounded-2xl w-full max-w-md overflow-hidden scale-90 translate-y-4" id="modal-content">
+<div class="relative glass-card border border-white/10 rounded-2xl w-full max-w-md overflow-hidden scale-95 translate-y-8 opacity-0" id="modal-content">
 <div class="p-8">
 <div class="flex justify-between items-center mb-8">
 <h3 class="text-2xl font-bold font-headline tracking-tight">Get in Touch</h3>
@@ -159,16 +179,16 @@
         
         if (modal.classList.contains('hidden')) {
             modal.classList.remove('hidden');
-            setTimeout(() => {
-                overlay.classList.remove('opacity-0');
-                content.classList.remove('scale-90', 'translate-y-4');
-            }, 10);
+            // Force reflow
+            modal.offsetHeight;
+            overlay.classList.remove('opacity-0');
+            content.classList.remove('scale-95', 'translate-y-8', 'opacity-0');
         } else {
             overlay.classList.add('opacity-0');
-            content.classList.add('scale-90', 'translate-y-4');
+            content.classList.add('scale-95', 'translate-y-8', 'opacity-0');
             setTimeout(() => {
                 modal.classList.add('hidden');
-            }, 300);
+            }, 500);
         }
     }
 </script>
@@ -215,12 +235,7 @@
                 Software engineer specialized in building high-performance applications. I bridge the gap between complex backend logic and seamless frontend experiences.
             </p>
 <div class="flex items-center gap-8 pt-4">
-<a class="bg-primary text-on-primary px-8 py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_25px_rgba(133,173,255,0.4)] transition-all flex items-center gap-3" href="#projects">
-                    See Engineering Impact <span class="material-symbols-outlined text-sm">arrow_downward</span>
-</a>
-<a class="text-neutral-500 hover:text-primary font-mono text-xs uppercase tracking-wider transition-colors border-b border-transparent hover:border-primary pb-1" href="mailto:mpudasaini17@gmail.com">
-                    Download Full CV
-                </a>
+<a class="bg-primary text-on-primary px-8 py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_25px_rgba(133,173,255,0.4)] transition-all flex items-center gap-3" href="#projects" onclick="toggleModal(); return false;">Connect Now <span class="material-symbols-outlined text-sm">bolt</span></a>
 </div>
 </div>
 <div class="md:col-span-5 relative group">
@@ -499,7 +514,7 @@
 <div class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center">
 <span class="material-symbols-outlined text-sm text-white">call</span>
 </div>
-<span class="font-mono text-sm">977 9849788407</span>
+<span class="font-mono text-sm">+977 9849788407</span>
 </div>
 <div class="flex items-center gap-4">
 <div class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center">
@@ -530,7 +545,7 @@
 <textarea class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700" placeholder="Tell me about your project..." rows="4"></textarea>
 </div>
 <button class="w-full bg-primary text-on-primary py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(133,173,255,0.2)] active:scale-[0.98] transition-all">
-                        Send Transmission
+                        Send Message
                     </button>
 </form>
 </div>
