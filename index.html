@@ -687,26 +687,26 @@
                                 <label class="font-mono text-[10px] text-neutral-500 uppercase">Your Name</label>
                                 <input id="name"
                                     class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700"
-                                    placeholder="John Doe" type="text" />
+                                    placeholder="John Doe" type="text" required />
                             </div>
                             <div class="space-y-2">
                                 <label class="font-mono text-[10px] text-neutral-500 uppercase">Email Address</label>
                                 <input id="email"
                                     class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700"
-                                    placeholder="john@company.com" type="email" />
+                                    placeholder="john@company.com" type="email" required />
                             </div>
                         </div>
                         <div class="space-y-2">
                             <label class="font-mono text-[10px] text-neutral-500 uppercase">Subject</label>
                             <input id="subject"
                                 class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700"
-                                placeholder="Project Inquiry" type="text" />
+                                placeholder="Project Inquiry" type="text" required />
                         </div>
                         <div class="space-y-2">
                             <label class="font-mono text-[10px] text-neutral-500 uppercase">Message</label>
                             <textarea id="message"
                                 class="w-full bg-surface-container border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-neutral-700"
-                                placeholder="Tell me about your project..." rows="4"></textarea>
+                                placeholder="Tell me about your project..." rows="4" required></textarea>
                         </div>
                         <button type="submit"
                             class="w-full bg-primary text-on-primary py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(133,173,255,0.2)] active:scale-[0.98] transition-all">
@@ -745,11 +745,16 @@
         e.preventDefault();
 
         const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value,
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            subject: document.getElementById('subject').value.trim(),
+            message: document.getElementById('message').value.trim(),
         };
+
+        if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+            alert('Please fill in all fields before sending.');
+            return;
+        }
 
         const WORKER_URL = 'https://manojpudasaini-website.mpudasaini17.workers.dev';
 
